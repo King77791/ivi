@@ -1,0 +1,94 @@
+@layer base, custom;
+
+:root {
+    --main-color: crimson;           
+}
+
+@layer base {
+    body {
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+
+    }
+    ul {
+        padding: initial;
+        margin: initial;
+        list-style-type: none;    
+    }
+}
+@layer custom {
+    .container {
+        max-width: 60vw;
+        width: 100%;
+        margin-inline: auto;
+    }
+    @layer player {
+        .player__container {
+            background-color: var(--main-color);
+            color: #fff;
+            padding: 0 1rem 0.5rem 0.5rem;
+            clip-path: polygon(85% 0, 100% 35%, 100% 100%, 0 100%, 0 0);
+        }
+        .paragraph__container {
+            padding: 6.7vw 0;
+        }
+        .player__paragraph {
+            margin: 0;
+            font-size: 26px;
+            line-height: 1.1;
+            font-family: inherit;
+            color: currentColor;
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+        .resolution__list {
+            display: flex;
+            justify-content: space-between;
+
+            & li {
+                max-width: max-content;
+                padding: .2px .5rem;
+                font-size: 1rem;
+                line-height: 1.1;
+                color: var(--main-color);
+                background-color: #fff;
+            }
+        }
+    }
+    @layer description {
+        .container > * + * {
+            margin-top: 2rem;
+        }
+        .description__list {
+            counter-reset: item;
+        }
+        .description__item {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+
+            &::before {
+                counter-increment: item;
+                content: counter(item);
+                border-radius: 50%;
+                background: var(--main-color);
+                color: #fff;
+                font-size: 24px;
+                line-height: 1;
+                width: 40px;
+                height: 40px;
+                aspect-ratio: 1/1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 10px;
+            }
+        }
+        .description__item + .description__item {
+            margin-top: 1.5rem;
+        }
+    }
+}
